@@ -1,1 +1,1 @@
-Repositorio de alguns scripts PowerShel desenvolvidos para a disciplina de Redes de Computadores. 
+Repositório de alguns scripts PowerShell desenvolvidos para a disciplina de Redes de Computadores. 
