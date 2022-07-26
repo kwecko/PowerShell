@@ -1,0 +1,29 @@
+# Permitir a execução de scripts PowerShell via cmd
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+
+#Lista as Interfaces
+Get-NetAdapter
+
+# Informações das Interfaces
+Get-NetIPAddress 
+
+# Informações dos endereços IPs
+Get-NetIPAddress -AddressFamily IPv4
+
+# IP ativo 
+(Get-NetIPAddress | Where-Object {$_.AddressState -eq "Preferred" -and $_.ValidLifetime -lt "24:00:00"}).IPAddress
+
+# Servidor DNS Default
+$IFACE_DEFAULT=(Get-NetIPAddress | Where-Object {$_.AddressState -eq "Preferred" -and $_.ValidLifetime -lt "24:00:00"}).InterfaceAlias
+(Get-DnsClientServerAddress -AddressFamily IPv4 | Where-Object {$_.InterfaceAlias -eq $IFACE.DEFAULT}).ServerAddresses
+
+#++ Ou 
+(Get-DnsClientServerAddress -AddressFamily IPv4 | Where-Object {$_.InterfaceAlias -eq $(Get-NetIPAddress | Where-Object {$_.AddressState -eq "Preferred" -and $_.ValidLifetime -lt "24:00:00"}).InterfaceAlias }).ServerAddresses
+
+
+# Gateway 
+(Get-NetIPConfiguration | Foreach IPv4DefaultGateway).NextHop
+
+# Determinar o IP de uma URL 
+([System.Net.DNS]::GetHostAddresses('www.cisco.com') | Where-Object {$_.AddressFamily -eq "InterNetwork"} | select-object IPAddressToString)[0].IPAddressToString
+
