@@ -7,6 +7,21 @@ Get-NetAdapter
 # Informações das Interfaces
 Get-NetIPAddress 
 
+# Teste de Conexão 
+Test-NetConnection
+
+ou 
+
+Test-Connection
+
+# Configuração dos IPs
+Get-NetIPConfiguration
+
+# Informaçoes da Interfaces de Rede
+Get-NetIPInterface -AddressFamily IPv4
+Get-NetIPInterface | Sort-Object -Property InterfaceIndex | Format-Table
+
+
 # Informações dos endereços IPs
 Get-NetIPAddress -AddressFamily IPv4
 
@@ -22,6 +37,10 @@ $IFACE_DEFAULT=(Get-NetIPAddress | Where-Object {$_.AddressState -eq "Preferred"
 
 
 # Gateway 
+Get-NetRoute -DestinationPrefix "0.0.0.0/0"
+
+ou 
+
 (Get-NetIPConfiguration | Foreach IPv4DefaultGateway).NextHop
 
 # Determinar o IP de uma URL 
