@@ -1,5 +1,9 @@
 # Permitir a execução de scripts PowerShell via cmd
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted 
+# Depois seleciona "A" para todos
+
+# Visualizar a permissão de execução de um script
+Get-ExecutionPolicy
 
 #Lista as Interfaces
 Get-NetAdapter
