@@ -1,4 +1,10 @@
 # Permitir a execução de scripts PowerShell via cmd
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+# Depois seleciona "A" para todos
+# Via cmd:
+powershell.exe .\meuip.ps1
+
+# Habilitar a execução de scripts powershell
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted 
 # Depois seleciona "A" para todos
 
